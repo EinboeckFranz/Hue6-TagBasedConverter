@@ -14,7 +14,7 @@ public class TagBasedConverter {
         lines.forEach(line -> System.out.print(convertLine(line)));
         //NEW LINE
         System.out.println("\nPARALLEL");
-        //Parallel
+        //PARALLEL
         convertParallel(lines);
     }
 
@@ -38,16 +38,19 @@ public class TagBasedConverter {
 
     private static String convertLine(String line) {
         List<Tag> tags = new ArrayList<>();
+
         while(line.contains("<") && line.contains(">")) {
             Tag ofLine = new Tag(line.substring(line.indexOf('<'), line.indexOf('>')+1));
             if(ofLine.content().indexOf("/") == 1) {
                Tag withoutClosingBr = new Tag(ofLine.content().replaceFirst("/", ""));
-               if(!tags.remove(withoutClosingBr))
+               if(!tags.remove(withoutClosingBr)) {
                    System.out.print("\u001B[31mNo Opening Tag found to the following closing Tag:" + ofLine.content() + "\u001B[0m\n");
-               line = line.replaceFirst(ofLine.content(), "");
+                   line = "";
+               } else
+                   line = line.replaceFirst(ofLine.content(), "\n");
             } else {
                tags.add(ofLine);
-               line = line.replaceFirst(ofLine.content(), "\n");
+               line = line.replaceFirst(ofLine.content(), "");
             }
         }
         return line;
