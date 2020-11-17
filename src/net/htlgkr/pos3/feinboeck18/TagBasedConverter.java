@@ -51,7 +51,7 @@ public class TagBasedConverter {
                    line = line.replaceFirst(ofLine.content(), "\n");
             } else {
                tags.add(ofLine);
-               line = line.replaceFirst(ofLine.content(), "");
+               line = line.replaceFirst(ofLine.content(), "").trim();
             }
         }
         return line;
