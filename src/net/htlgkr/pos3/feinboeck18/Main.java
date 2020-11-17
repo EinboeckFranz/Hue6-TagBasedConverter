@@ -23,7 +23,8 @@ public class Main {
     }
     private List<String> readInFile(File file) {
         try {
-            return Files.lines(file.toPath()).collect(Collectors.toList());
+            return Files.lines(file.toPath())
+                    .collect(Collectors.toList());
         } catch (IOException e) {
             System.out.println("File not found");
             return null;

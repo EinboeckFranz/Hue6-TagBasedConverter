@@ -34,6 +34,7 @@ public class TagBasedConverter {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        pool.shutdown();
     }
 
     private static String convertLine(String line) {
